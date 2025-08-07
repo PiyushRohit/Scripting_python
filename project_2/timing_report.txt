@@ -1,0 +1,7 @@
+INFO: Timing report begins
+Warning: setup violation on signal A at time 120ns
+Signal B is fine.
+Critical: hold violation on net CLK_OUT
+Setup violation detected on path U1/U2/U3
+Hold violation near input buffer
+INFO: Timing report ends

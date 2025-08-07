@@ -1,0 +1,5 @@
+type,detail
+Setup,Warning: setup violation on signal A at time 120ns
+Hold,Critical: hold violation on net CLK_OUT
+Setup,Setup violation detected on path U1/U2/U3
+Hold,Hold violation near input buffer
