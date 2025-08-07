@@ -13,7 +13,6 @@ parser.add_argument('--tb', required=True, help='Testbench file (e.g., bcd_count
 parser.add_argument('--output', default='sim_out', help='Name of simulation output binary (default: sim_out)')
 parser.add_argument('--vcd', default='waveform.vcd', help='VCD waveform output file name (default: waveform.vcd)')
 parser.add_argument('--gtkw', help='Optional GTKWave layout file (.gtkw)')
-parser.add_argument('--wave', action='store_true', help='Open waveform in GTKWave after simulation')
 
 args = parser.parse_args()
 
@@ -55,17 +54,15 @@ else:
     print(sim_result.stdout)
 
 # -------------------------------
-# Launch GTKWave if Requested
+# Launch GTKWave Automatically
 # -------------------------------
-if args.wave:
-    if not os.path.exists(args.vcd):
-        print(f"⚠️ VCD file '{args.vcd}' not found. Cannot open GTKWave.")
-        sys.exit(1)
+if not os.path.exists(args.vcd):
+    print(f"⚠️ VCD file '{args.vcd}' not found. Cannot open GTKWave.")
+    sys.exit(1)
 
-    if args.gtkw and os.path.exists(args.gtkw):
-        print(f"📂 Launching GTKWave with layout: {args.gtkw}")
-    else:
-        print("📂 Launching GTKWave without layout.")
-
+if args.gtkw and os.path.exists(args.gtkw):
+    print(f"📂 Launching GTKWave with layout: {args.gtkw}")
+    subprocess.run(['gtkwave', args.vcd, args.gtkw])
+else:
+    print("📂 Launching GTKWave without layout.")
     subprocess.run(['gtkwave', args.vcd])
-
