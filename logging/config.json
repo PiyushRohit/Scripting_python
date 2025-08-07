@@ -1,0 +1,26 @@
+{
+    "tools": {
+        "vivado": {
+            "command": "vivado",
+            "flags": ["-mode", "batch", "-source", "top_module.tcl"],
+            "output_directory": "vivado_build",
+            "log_level": "INFO",
+            "tool_log": "vivado.log"
+        },
+        "quartus": {
+            "command": "quartus_sh",
+            "flags": ["--flow", "compile", "top_module"],
+            "output_directory": "quartus_build",
+            "log_level": "INFO",
+            "tool_log": "output_files/quartus.log"
+        },
+        "design_compiler": {
+            "command": "dc_shell",
+            "flags": ["-f", "synth.tcl"],
+            "output_directory": "dc_build",
+            "log_level": "DEBUG",
+            "tool_log": "dc.log"
+        }
+    },
+    "default_tool": "vivado"
+}
